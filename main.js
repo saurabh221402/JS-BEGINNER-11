@@ -77,8 +77,9 @@ function solve(A, B, C, D, E, F) {
             const cell = row.insertCell(); 
             cell.textContent = "0";
             cell.id= `id_${i}_${j}`;
-            cell.style.width = '20px';
-            cell.style.height = '20px'
+            cell.style.width = '3px';
+            cell.style.height = '3px';
+            cell.style.fontSize = '5px';
         }
     }
     //marking all circle
