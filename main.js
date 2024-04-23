@@ -66,8 +66,35 @@ function bfs_check(si, sj, vis) {
     }
     myfun();
 }
+let flag=0;
 
-function solve(A, B, C, D, E, F) {
+function dfs_check(i,j,vis)
+{
+    if(!flag){
+        async function myfun()
+        {
+        if(i<0||j<0||i>=vis.length||j>=vis[0].length||vis[i][j]!=0)return ;
+        let ff=`id_${i}_${j}`;
+        let cell=document.getElementById(ff);
+        cell.textContent = "2";
+        cell.style.backgroundColor = 'green';
+        vis[i][j]=2;
+        if (i === vis.length-1 && j === vis[0].length-1){alert("valid path"); flag=1;}
+        for(let a=1;a>=-1;a--)
+        {
+            for(let b=1;b>=-1;b--)
+            {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                dfs_check(i+a,j+b,vis);
+            } 
+        }
+        }
+        myfun();
+
+    }
+}
+
+function solve(A, B, C, D, E, F,algo) {
     let vis = Array.from({ length: A + 1 }, () => Array(B + 1).fill(0));
     table.innerHTML = '';
     //table filling
@@ -88,7 +115,7 @@ function solve(A, B, C, D, E, F) {
         bfs_vis(E[i], F[i], D, vis);
     }
  
-    let ans = bfs_check(A, B, vis); 
+    let ans = ((algo) ? (dfs_check(0,0, vis)) : (bfs_check(A,B,vis))); 
     return ans ? "YES" : "NO";
 }
  
@@ -100,6 +127,7 @@ function generateMatrix() {
     const C = document.getElementById('C').value, D = document.getElementById('D').value;
     let E=[];
     let F=[]; 
+    flag=0;
     for(let i=0;i<A;i++)
     {
         let temp=Math.floor(Math.random()*A);
@@ -110,6 +138,8 @@ function generateMatrix() {
         let temp=Math.floor(Math.random()*B);
         F.push(temp);
     }
-    const result = solve(A, B, C, D, E, F); 
+    let algo=((document.getElementsByName("algo"))[0].checked) ? 1 : 0;
+    const result = solve(A, B, C, D, E, F,algo); 
    // console.log("Result:", result);  
 }
+ 

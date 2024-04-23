@@ -16,13 +16,17 @@
     
 </head>
 <body>
-    <h2>Problem Statement:Valid Path</h2>
-    <h3>There is a rectangle with the left top as (0, 0) and the right bottom as (x, y). There are N circles such that their centers are inside the rectangle.
-         The radius of each circle is R. Now we need to find out if it is possible that we can move from (0, 0) to (x, y) without touching any circle.</h3>
-    <h4>Notes:</h4>
-    <p>
-        * We can move from any cell to any of its 8 adjacent neighbors and we cannot move outside the boundary of the rectangle at any point of time.<br>
-        * A circle doesn't touch a cell (i,j) if the distance from its center to the cell (i,j) is less than R.</p>
+    <h2>Problem Statement:Valid Path</h2> 
+    <div id="discription"  >
+        <h3>There is a rectangle with the left top as (0, 0) and the right bottom as (x, y). There are N circles such that their centers are inside the rectangle.
+            The radius of each circle is R. Now we need to find out if it is possible that we can move from (0, 0) to (x, y) without touching any circle.</h3>
+       <h4>Notes:</h4>
+       <p>
+           * We can move from any cell to any of its 8 adjacent neighbors and we cannot move outside the boundary of the rectangle at any point of time.<br>
+           * A circle doesn't touch a cell (i,j) if the distance from its center to the cell (i,j) is less than R.
+        </p>
+    </div>
+    <div>
     <label for="A">Number of Rows:</label>
     <input type="number" id="A" min="1" value="18">
     <label for="B">Number of Columns:</label>
@@ -37,10 +41,16 @@
     <br>
     <label for="cy">y-coordinate of circle:</label>
     <input type="text" id="cy"  placeholder="enter single space between each value" style="width: 300px;"><br>-->
+    <h2>Using Algorithm: </h2>
+    <input type="radio" id="dfs" name="algo">
+    <label for="dfs">DFS</label>&nbsp;
+    <input type="radio" id="bfs" name="algo">
+    <label for="bfs">BFS</label><br>
     <button onclick="generateMatrix()">Generate Matrix</button>
     <br><br>
     <table id="matrix">
     </table> 
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
