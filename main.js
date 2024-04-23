@@ -7,7 +7,7 @@ function bfs_vis(i, j, r, vis) {
     const temp = Array.from({ length: n }, () => Array(m).fill(0));
     const qq = [];
     qq.push([i, j]);
-    document.getElementById(`id_${i}_${j}`).textContent="1";
+    document.getElementById(`id_${i}_${j}`).textContent=`${i}.${j}`;
     vis[i][j] = 1;
     temp[i][j] = 1;
     while (qq.length > 0) {
@@ -34,7 +34,7 @@ function bfs_check(si, sj, vis) {
     const n = vis.length, m = vis[0].length;
     const qq = [];
     qq.push([0, 0]);
-    if (vis[0][0] === 1) return false;
+    if (vis[0][0] === 1){alert("no valid path"); return false;}
 
     async function myfun()
     {
@@ -56,18 +56,19 @@ function bfs_check(si, sj, vis) {
                        // console.log("Cell not found!");
                     }
                     qq.push([dx, dy]);
-                    if (dx === si && dy === sj) return true;
+                    if (dx === si && dy === sj){alert("valid path"); return true;}
                 }
             }
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
+        alert("no valid path");
+        return false;
     }
     myfun();
-    return false;
 }
 
 function solve(A, B, C, D, E, F) {
-    const vis = Array.from({ length: A + 1 }, () => Array(B + 1).fill(0));
+    let vis = Array.from({ length: A + 1 }, () => Array(B + 1).fill(0));
     table.innerHTML = '';
     //table filling
     for (let i = 0; i <= A; i++) { 
@@ -85,33 +86,29 @@ function solve(A, B, C, D, E, F) {
         if(E[i]>=A || F[i]>=B)continue;
         bfs_vis(E[i], F[i], D, vis);
     }
-
-    // for (let i = 0; i <= A; i++) { 
-    //     let row="";
-    //     for (let j = 0; j <= B; j++) {  
-    //        row += vis[i][j] + " ";
-    //     }
-    //     console.log(row);
-    // }
-    let ans = bfs_check(A, B, vis);//checking is path valid to reach destination
-    // for (let i = 0; i <= A; i++) {
-    //     let row = "";
-    //     for (let j = 0; j <= B; j++) {
-    //         row += vis[i][j] + " ";
-    //     }
-    //     console.log(row);
-    // }
+ 
+    let ans = bfs_check(A, B, vis); 
     return ans ? "YES" : "NO";
 }
  
 
 function generateMatrix() {
-    // Get the values of A and B
+    // Get the values of A ,B,C,D,E,F
     const A = parseInt(document.getElementById('A').value);
     const B = parseInt(document.getElementById('B').value);
-    const C = 6, D = 5;
-    const E = [3, 22, 5,15,24,10];
-    const F = [6, 8, 14,34,27,19]; 
+    const C = document.getElementById('C').value, D = document.getElementById('D').value;
+    let E=[];
+    let F=[]; 
+    for(let i=0;i<A;i++)
+    {
+        let temp=Math.floor(Math.random()*A);
+        E.push(temp);
+    }
+    for(let i=0;i<B;i++)
+    {
+        let temp=Math.floor(Math.random()*B);
+        F.push(temp);
+    }
     const result = solve(A, B, C, D, E, F); 
-    console.log("Result:", result);  
+   // console.log("Result:", result);  
 }

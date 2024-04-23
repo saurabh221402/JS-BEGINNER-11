@@ -17,10 +17,20 @@
 </head>
 <body>
     <h2>Matrix Generator</h2>
-    <label for="rows">Number of Rows:</label>
-    <input type="number" id="A" min="1" value="28">
-    <label for="columns">Number of Columns:</label>
-    <input type="number" id="B" min="1" value="40">
+    <label for="A">Number of Rows:</label>
+    <input type="number" id="A" min="1" value="18">
+    <label for="B">Number of Columns:</label>
+    <input type="number" id="B" min="1" value="30"><br>
+    <label for="C">Number of Circular Obstecles:</label>
+    <input type="number" id="C" min="1" value="4"> <br>
+    <label for="C">Radius of circle:</label>
+    <input type="number" id="D" min="1" value="4"> <br>
+    <tt>co-ordinates are choosen randomaly</tt>
+    <!--<label for="cx">x-coordinate of circle:</label>
+    <input type="text" id="cx" placeholder="enter single space between each value" style="width: 300px;">
+    <br>
+    <label for="cy">y-coordinate of circle:</label>
+    <input type="text" id="cy"  placeholder="enter single space between each value" style="width: 300px;"><br>-->
     <button onclick="generateMatrix()">Generate Matrix</button>
     <br><br>
     <table id="matrix">
